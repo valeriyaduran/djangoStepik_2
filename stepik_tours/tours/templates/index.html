@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load stars %}
+{% load price %}
 
  {% block content %}
   <main class="container mt-3">
@@ -21,7 +22,7 @@
           <div class="card-body">
             <h2 class="h5 card-title">{{ card.1.country }}: {{ card.1.title }}</h2>
             <p class="card-text">{{ card.1.description|truncatechars:60}} </p>
-            <h6>{{ card.1.date }}, {{ card.1.nights|add:1 }} дней, {{ card.1.price }} P, {{ card.1.stars|stars }}</h6>
+            <h6>{{ card.1.date }}, {{ card.1.nights|add:1 }} дней, {{ card.1.price|price }} P, {{ card.1.stars|stars }}</h6>
             <a href="{% url 'tour' card.0 %}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>

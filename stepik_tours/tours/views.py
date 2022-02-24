@@ -4,14 +4,6 @@ from django.shortcuts import render
 from tours import data
 
 
-def reformat_price(tours):
-    for item in tours.items():
-        item[1]["price"] = '{:,}'.format(item[1]["price"]).replace(',', ' ')
-
-
-reformat_price(data.tours)
-
-
 def main_view(request):
     context = {"subtitle": data.subtitle, "description": data.description,
                "departures": data.departures, "tours": dict(random.sample(data.tours.items(), 6))}
