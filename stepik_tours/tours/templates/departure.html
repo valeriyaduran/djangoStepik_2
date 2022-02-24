@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load stars %}
 
       {% block mainmenu %}
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -33,9 +34,9 @@
           </div>
 <!--          <img src="{{ tour.1.picture }}" class="card-img-top img-fluid" alt="">-->
           <div class="card-body">
-            <h2 class="h5 card-title">{{tour.1.country}}: {{ tour.1.title }}, {{ tour.1.stars }}★</h2>
+            <h2 class="h5 card-title">{{tour.1.country}}: {{ tour.1.title }}, {{ tour.1.stars|stars }}</h2>
             <p class="card-text">{{ tour.1.description|truncatechars:60 }}</p>
-            <h6>{{ tour.1.date }}, {{ tour.1.nights|add:1 }} дней, {{ tour.1.price }} P, {{ tour.1.stars }} ★</h6>
+            <h6>{{ tour.1.date }}, {{ tour.1.nights|add:1 }} дней, {{ tour.1.price }} P, {{ tour.1.stars|stars }}</h6>
             <a href="{% url 'tour' tour.0 %}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>

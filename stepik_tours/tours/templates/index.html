@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load stars %}
 
  {% block content %}
   <main class="container mt-3">
@@ -11,7 +12,7 @@
     </section>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for card in randomed_tours.items %}
+      {% for card in tours.items %}
       <div class="col-4">
         <div class="card mb-4">
           <div class="embed-responsive embed-responsive-16by9">
@@ -20,7 +21,7 @@
           <div class="card-body">
             <h2 class="h5 card-title">{{ card.1.country }}: {{ card.1.title }}</h2>
             <p class="card-text">{{ card.1.description|truncatechars:60}} </p>
-            <h6>{{ card.1.date }}, {{ card.1.nights|add:1 }} дней, {{ card.1.price }} P, {{ card.1.stars }} ★</h6>
+            <h6>{{ card.1.date }}, {{ card.1.nights|add:1 }} дней, {{ card.1.price }} P, {{ card.1.stars|stars }}</h6>
             <a href="{% url 'tour' card.0 %}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>

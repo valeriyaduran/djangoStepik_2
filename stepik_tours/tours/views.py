@@ -13,12 +13,8 @@ reformat_price(data.tours)
 
 
 def main_view(request):
-    randomed_tours = dict()
-    while len(randomed_tours) <= 5:
-        key = random.randint(1, len(data.tours.items()))
-        randomed_tours[key] = data.tours.setdefault(key)
-    context = {"subtitle": data.subtitle, "description": data.description, "randomed_tours": randomed_tours,
-               "departures": data.departures}
+    context = {"subtitle": data.subtitle, "description": data.description,
+               "departures": data.departures, "tours": dict(random.sample(data.tours.items(), 6))}
 
     return render(request, "index.html", context=context)
 
@@ -31,7 +27,7 @@ def departure_view(request, departure):
             num_tours_by_departure += 1
             tours_by_departure[item[0]] = data.tours.setdefault(item[0])
     if departure not in data.departures:
-        raise Http404()
+        raise Http404
 
     max_price = tours_by_departure[max(tours_by_departure, key=lambda x: tours_by_departure[x]["price"]
                                        )]["price"]
@@ -64,7 +60,7 @@ def tour_view(request, id):
         dep = data.departures.get(tour.get("departure"))
         dep = dep[0].lower() + dep[1:]
     else:
-        raise Http404()
+        raise Http404
     context = {"tour": data.tours.get(id), "departure": data.departures.get(tour.get("departure")),
                "departures": data.departures, "departure_to_lower": dep}
     return render(request, "tour.html", context=context)
