@@ -1,1 +1,1 @@
-web: gunicorn tours.wsgi
+web:gunicorn tours.wsgi
